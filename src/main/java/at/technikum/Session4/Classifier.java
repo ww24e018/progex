@@ -12,12 +12,22 @@ public class Classifier {
         System.out.print("enter price: "); p = sc.nextInt();
         System.out.print("enter quality: "); q = sc.nextInt();
 
-        System.out.println((p>50)?"low price":"high price");
-        System.out.println((q>50)?"low quality":"high quality");
+        System.out.println((p<50)?"low price":"high price");
+        System.out.println((q<50)?"low quality":"high quality");
 
-
-
-
+        if (p>=50) {
+            if (q>=50) {
+                System.out.println("luxury");
+            } else {
+                System.out.println("rip off");
+            }
+        } else {
+            if (q>=50) {
+                System.out.println("bargain");
+            } else {
+                System.out.println("junk");
+            }
+        }
 
     }
 }

@@ -54,4 +54,9 @@ public class MeCIDR32 implements CIDRThingy{
     public String bitMaskAsString() {
         return DEFAULT_STRING;
     }
+    public String  bitMaskDezimal() { return DEFAULT_STRING; }
+
+    public String broadcastAsDezimal() {
+        return DEFAULT_STRING;
+    }
 }

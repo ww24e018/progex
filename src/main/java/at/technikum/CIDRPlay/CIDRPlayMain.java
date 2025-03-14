@@ -18,6 +18,12 @@ public class CIDRPlayMain {
         System.out.println(first.inputAsHex());
         System.out.println(first32.inputAsHex());
 
+        System.out.println("nachrechnen 2025.03.14");
+        CIDRThingy bsp1 = new MeCIDR(192,62,19,182,23);
+        System.out.println("bitpattern base: "+bsp1.inputAsBitPattern());
+        System.out.println("netmask:         "+bsp1.bitMaskAsString());
+        System.out.println("netmask dezi:    "+bsp1.bitMaskDezimal());
+        System.out.println("broadcast dezi:  "+bsp1.broadcastAsDezimal());
 
     }
 }

@@ -22,6 +22,16 @@ public class MeCIDR implements CIDRThingy {
                 longAsUInt8Binary((n & 0x000000FFl))
                 );
     }
+    public String longAsUint32DotDezimal(long n) {
+        return String.format("%d.%d.%d.%d",
+                (n & 0xFF000000l) >> 24,
+                (n & 0x00FF0000l) >> 16,
+                (n & 0x0000FF00l) >> 8,
+                (n & 0x000000FFl)
+        );
+    }
+
+
 
     public MeCIDR(long a,long b,long c,long d,long n) {
         assertByteValue(a);assertByteValue(b);assertByteValue(c);assertByteValue(d);
@@ -71,6 +81,10 @@ public class MeCIDR implements CIDRThingy {
         return bm;
     }
 
+    public String bitMaskDezimal() {
+        return this.longAsUint32DotDezimal(this.bitmaskAsLong());
+    }
+
     public String bitMaskAsString() {
         // this works because the "highest bit" is always "1". methinks. We are still using a long because there is not %!+* uint32
         String withOutDots =  String.format("%s", Long.toBinaryString(this.bitmaskAsLong()));
@@ -86,4 +100,10 @@ public class MeCIDR implements CIDRThingy {
         return String.format("%8x", this.ip_int);
     }
 
+    public String broadcastAsDezimal() {
+        long res = this.ip_int;
+        res |= (~this.bitmaskAsLong() );
+        res &= 0xFFFFFFFF;
+        return this.longAsUint32DotDezimal(res);
+    }
 }

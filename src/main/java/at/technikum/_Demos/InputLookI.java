@@ -23,16 +23,19 @@ public class InputLookI {
         // v1:
         int num_inputs = -1;
         int sum_inputs = 0;
+        int max_inputs = Integer.MIN_VALUE;
         int leinput;
         do {
             num_inputs++;
             System.out.print(": ");
             leinput = sc.nextInt();
             sum_inputs += leinput;
-        } while (leinput > 0);
+            if (validInputNumber(leinput) && max_inputs < leinput) max_inputs = leinput;
+        } while (validInputNumber(leinput));
         sum_inputs -= leinput;
         System.out.format("cnt: %d\n", num_inputs);
         System.out.format("sum: %d\n", sum_inputs);
+        System.out.format("max: %d\n", max_inputs);
         System.out.println("End.");
 
         // and now ...
@@ -45,6 +48,10 @@ public class InputLookI {
         // nun; kann das do-while nicht ganz ersetzen, ":" fehlt; also die vollst. duplizierung des codeblocks.
         // quick googling: kein is_undef() in java?
 
+    }
+
+    private static boolean validInputNumber(int myInt) {
+        return (myInt > 0)?true:false;
     }
 
 }

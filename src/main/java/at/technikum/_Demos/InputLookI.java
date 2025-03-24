@@ -22,13 +22,17 @@ public class InputLookI {
 
         // v1:
         int num_inputs = -1;
+        int sum_inputs = 0;
         int leinput;
         do {
             num_inputs++;
             System.out.print(": ");
             leinput = sc.nextInt();
+            sum_inputs += leinput;
         } while (leinput > 0);
+        sum_inputs -= leinput;
         System.out.format("cnt: %d\n", num_inputs);
+        System.out.format("sum: %d\n", sum_inputs);
         System.out.println("End.");
 
         // and now ...

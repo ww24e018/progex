@@ -42,6 +42,34 @@ public class TestingStuff {
         // in practice: instead of cast, or autocast, I have to write an operator-statement that returns bool. ok.
 
 
+        // checking scope of fors
+        for (int uniuzJztbd = 17; uniuzJztbd < 18; uniuzJztbd++) {
+            System.out.println(uniuzJztbd);
+        }
+        // System.out.println(uniuzJztbd); // does not work; out of scope;
+
+        /*
+        int uniuzJztbd = 42;
+        for (int uniuzJztbd = 17; uniuzJztbd < 18; uniuzJztbd++) {
+            System.out.println(uniuzJztbd);
+        }
+         */ // doing this says "cant do dave; name already used
+
+        /*
+        javascript code I tried in ff console for comparision:
+
+        var i = "hello";
+        console.log(i);
+        for (var i = 0; i < 1; i++) {
+        console.log(i);
+        };
+        console.log(i);
+
+        Annoyingly, but - if memory serves - kinda logically this outputs <Lestring>,0,1,undefined ;
+        Cause a for loop does not a new scope make, in js. I think.
+
+         */
+
 
 
         //return 1;

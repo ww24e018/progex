@@ -14,6 +14,10 @@ public class TestingStringsUnicodeChars {
         mylist.add("String 2");
         mylist.add("String 3: \uD83D\uDC08");
         mylist.add("\uD83D\uDC08");
+        mylist.add("MüsterMänn");
+        mylist.add("");
+        mylist.add("조선글 (훈민정음; 訓民正音)");
+        mylist.add("粁 kiromētoru (Kilometer)");
 
         for (String str : mylist) {
             System.out.format("\nStrLen=%2d; ", str.length());

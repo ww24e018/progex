@@ -19,6 +19,7 @@ public class TestingStringsUnicodeChars {
         mylist.add("조선글 (훈민정음; 訓民正音)");
         mylist.add("粁 kiromētoru (Kilometer)");
         mylist.add("🐈");
+        mylist.add("xkcd: ⧍ ⏧ ⨳ ⩼ ⦞ ⨄ ⭈ ≝ ⍼ ⩐ ⩩ ⍨ ℘ ⫁ ⌭ ⨓ ");
 
         // get me max codepointcounts plz;
         // doc: https://docs.oracle.com/javase/tutorial/collections/streams/reduction.html

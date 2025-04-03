@@ -1,5 +1,8 @@
 package at.technikum.Session5caq.Calendar;
 
+import java.util.Date;
+import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -33,6 +36,9 @@ public class Main {
     private static final int EXIT = 666;
 
     public static void main(String[] args) {
+
+        // do testcases
+        testcases();
 
         sc = new Scanner(System.in);
         int day = 1, month = 1, year = 1970;
@@ -118,40 +124,108 @@ public class Main {
 
     }
 
+    // assume gregorian, assume WP is correct
     public static boolean isLeap(int year) {
+        if (year%400 == 0) return true;
+        if (year%100 == 0) return false;
+        return year % 4 == 0;
+    }
+    // obsoleted later? or not
+    public static boolean meIsGregorianPotentially(int y, int m, int d) {
+        // if(y < 1582 || y > 2199) return false;
+        long date_as_long_thingy = y* 10000L +m* 100L +d;
+        if(date_as_long_thingy < 15821016 || date_as_long_thingy > 21991231) return false;
         return true;
     }
+    // https://en.wikipedia.org/wiki/Gregorian_calendar
+    public static final int[] daysInMonthHelperArray = {
+        31,28,31, 30,31,30, 31,31,30, 31,30,31
+    };
     public static int daysInMonth(int year, int month) {
-        return 0;
+        if (meIsGregorianPotentially(year,month,1) && checkDate(year,month)) {
+            return (isLeap(year)&&month==2)
+                    ?daysInMonthHelperArray[month-1]+1
+                    :daysInMonthHelperArray[month-1]
+                    ;
+        } else {
+            return -1;
+        }
     }
     public static boolean checkDate(int year) {
-        return false;
+        return year >= 1582 && year <= 2199;
     }
     public static boolean checkDate(int year, int month) {
-        return false;
+        return checkDate(year) && month >=1 && month <= 12;
     }
     public static boolean checkDate(int year, int month, int day) {
-        return false;
+        return checkDate(year, month)
+                && day >= 1 && day <= daysInMonth(year,month)
+                && meIsGregorianPotentially(year,month,day);
     }
+
+    static final String[] weekdayIntToStringHelperArray = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    static final String[] weekdayIntToStringHelperArrayLong = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday"};
     public static int ymd2w(int year, int month, int day) {
-        return 0;
+        // might do the "nested exercise" thing later. for now:
+        java.util.Date d = new java.util.Date(year,month,day);
+        //return weekdayIntToStringHelperArray[d.getDay()];
+        return d.getDay();
+        //return 0;
     }
     public static int dayNumber(int year, int month, int day) {
-        return 0;
+        int dayno = 0;
+        for (int i = 1; i < month; i++) { // never done if month = 1, anm
+            dayno += daysInMonth(year,i);
+        }
+        dayno += day;
+        return dayno;
     }
     static int weekNumber(int year, int month, int day) {
-        return 0;
+        // angabe hier unterspezifiziert. was ist "woche" - so-bis-sa? mo-bis-so?
+        /*int result = dayNumber(year,month,day);
+        result = (
+                    (dayNumber(year,month,day)+7-ymd2w(year,1,1))
+                            /7);
+        if (result == 53) result = 1;*/
+        LocalDate mylocaldate = new LocalDate.of(year,month,day);
+
+        //return result;
+        return (int) (Math.random()*51);
     }
     public static void printDayName(int day) {
-        return;
+        if (day >= 0 && day <= 6) System.out.format(weekdayIntToStringHelperArray[day]);
     }
+    public static void printDayNameLong(int day) {
+        if (day >= 0 && day <= 6) System.out.format(weekdayIntToStringHelperArrayLong[day]);
+    }
+    static final String[] monthNameFromInt = {
+            "January", "February", "March", "April", "May", "Juni",
+            "July", "August", "September","October", "November", "December"
+    };
     public static void printMonthName(int month) {
-        return;
+        System.out.format(monthNameFromInt[month-1]);
     }
     public static void printNmberEnding(int n) {
-        return;
+        if (n%10 == 1 && n != 11) {
+            System.out.format("st"); return;
+        }
+        if (n%10 == 2 && n != 12) {
+            System.out.format("nd"); return;
+        }
+        if (n%10 == 3 && n != 13) {
+            System.out.format("rd"); return;
+        }
+        System.out.format("th");
     }
     public static void printDate(int year, int month, int day) {
+        if (checkDate(year,month,day)) {
+            System.out.format("invalid date (%d%d.%d", day,month,year);
+        } else {
+            /*System.out.format("%s, ", printDayNameLong(dayNumber(year,month,day));
+            printMonthName(month);
+            System.out.format(", %d%s", day, printNmberEnding(day))*/
+
+        }
         return;
     }
     public static void printStatistics(int year, int month, int day) {
@@ -160,6 +234,15 @@ public class Main {
     //public static void printCalendar(int year, int month, int day, int highlight) { // sig lt. angabe
     public static void printCalendar(int year, int month, int day, boolean highlight) {
         return;
+    }
+
+    public static void testcases() {
+        if (dayNumber(2000,3,12) == 72) System.out.format("Test #1 passed\n");
+        if (dayNumber(1583,1,1) == 1) System.out.format("Test #2 passed\n");
+        if (weekNumber(2025,1,1) == 1) System.out.format("Test #3 passed\n");
+        if (weekNumber(2025,1,6) == 2) System.out.format("Test #4 passed\n");
+        if (weekNumber(2024,12,31) == 1) System.out.format("Test #5 passed\n");
+        if (weekNumber(2024,12,29) == 52) System.out.format("Test #6 passed\n");
     }
 
 

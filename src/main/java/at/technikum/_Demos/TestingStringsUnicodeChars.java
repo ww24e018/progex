@@ -18,11 +18,16 @@ public class TestingStringsUnicodeChars {
         mylist.add("");
         mylist.add("조선글 (훈민정음; 訓民正音)");
         mylist.add("粁 kiromētoru (Kilometer)");
+        mylist.add("🐈");
+
+        // get me max codepointcounts plz;
+        int maxCPC = mylist.stream().mapToInt((s) -> s.codePointCount(0,s.length())).reduce(3, (a,b) -> Math.max(a,b));
+        System.out.format("Max codepointcount as per map/reduce, (min 3): %d", maxCPC);
 
         for (String str : mylist) {
             System.out.format("\nStrLen=%2d; ", str.length());
             System.out.format("Codepoints: %2d; ", str.codePointCount(0, str.length()));
-            System.out.format("Str=%s; ",  str);
+            System.out.format("Str=%-"+maxCPC+"s; ",  str);
 
         }
 

@@ -21,6 +21,7 @@ public class TestingStringsUnicodeChars {
         mylist.add("🐈");
 
         // get me max codepointcounts plz;
+        // doc: https://docs.oracle.com/javase/tutorial/collections/streams/reduction.html
         int maxCPC = mylist.stream().mapToInt((s) -> s.codePointCount(0,s.length())).reduce(3, (a,b) -> Math.max(a,b));
         System.out.format("Max codepointcount as per map/reduce, (min 3): %d", maxCPC);
 

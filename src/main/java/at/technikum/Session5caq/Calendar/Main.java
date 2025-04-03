@@ -116,6 +116,51 @@ public class Main {
             System.out.printf("\n");
         }
 
-
     }
+
+    public static boolean isLeap(int year) {
+        return true;
+    }
+    public static int daysInMonth(int year, int month) {
+        return 0;
+    }
+    public static boolean checkDate(int year) {
+        return false;
+    }
+    public static boolean checkDate(int year, int month) {
+        return false;
+    }
+    public static boolean checkDate(int year, int month, int day) {
+        return false;
+    }
+    public static int ymd2w(int year, int month, int day) {
+        return 0;
+    }
+    public static int dayNumber(int year, int month, int day) {
+        return 0;
+    }
+    static int weekNumber(int year, int month, int day) {
+        return 0;
+    }
+    public static void printDayName(int day) {
+        return;
+    }
+    public static void printMonthName(int month) {
+        return;
+    }
+    public static void printNmberEnding(int n) {
+        return;
+    }
+    public static void printDate(int year, int month, int day) {
+        return;
+    }
+    public static void printStatistics(int year, int month, int day) {
+        return;
+    }
+    //public static void printCalendar(int year, int month, int day, int highlight) { // sig lt. angabe
+    public static void printCalendar(int year, int month, int day, boolean highlight) {
+        return;
+    }
+
+
 }

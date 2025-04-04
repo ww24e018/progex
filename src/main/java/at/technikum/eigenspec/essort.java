@@ -1,6 +1,7 @@
 package at.technikum.eigenspec;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,16 +19,22 @@ public class essort {
             ;
 
     public static void main(String[] args) {
+        boolean reverseOrder = false;
+        boolean printLineNumbers = false;
         if (args.length != 0) {
             //System.out.format("%d\n", args.length);
             if (args[0].equals("help")) { printStdoutAndQuit("Help will not come. You are alone. All hope is lost. Also, try '--help'.");}
             else if (args[0].equals("--help")) printStdoutAndQuit(msg_help);
             else printStdoutAndQuit("???");
         } else {
-            // parameterless behaviour
-            List<String> myLines = readLines();
-            writeLines(myLines);
         }
+        // parameterless behaviour
+        // https://docs.oracle.com/javase/8/docs/api/java/util/List.html
+        // https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
+        List<String> inputLines = readLines();
+        List<String> outputLines = new LinkedList<String>(inputLines);
+        outputLines.sort(String::compareTo);
+        writeLines(outputLines);
     }
     public static void printStdoutAndQuit(String msg) {
         System.out.println(msg);

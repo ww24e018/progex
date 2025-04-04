@@ -1,5 +1,9 @@
 package at.technikum.eigenspec;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class essort {
 
     static String toolname = "essort"; // there is a way to read this methinks
@@ -21,10 +25,26 @@ public class essort {
             else printStdoutAndQuit("???");
         } else {
             // parameterless behaviour
+            List<String> myLines = readLines();
+            writeLines(myLines);
         }
     }
     public static void printStdoutAndQuit(String msg) {
         System.out.println(msg);
+    }
+
+    public static List<String> readLines() {
+        List<String> result = new ArrayList<String>();
+        Scanner scanner = new Scanner(System.in);
+        while(scanner.hasNextLine()) {
+            result.add(scanner.nextLine());
+        }
+        return result;
+    }
+    public static void writeLines(List<String> lines) {
+        for(String line : lines) {
+            System.out.println(line);
+        }
     }
 
 }

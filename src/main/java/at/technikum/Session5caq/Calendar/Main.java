@@ -187,7 +187,7 @@ public class Main {
                     (dayNumber(year,month,day)+7-ymd2w(year,1,1))
                             /7);
         if (result == 53) result = 1;*/
-        LocalDate mylocaldate = new LocalDate.of(year,month,day);
+        //LocalDate mylocaldate = new LocalDate.of(year,month,day);
 
         //return result;
         return (int) (Math.random()*51);

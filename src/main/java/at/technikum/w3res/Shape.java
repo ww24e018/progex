@@ -5,9 +5,13 @@ package at.technikum.w3res;
   perimeter, and subclasses for "Rectangle", "Circle",
   and "Triangle".
  */
+
+/* superseeded by Class using Interface
 public abstract class Shape {
     abstract double area();
     abstract double perimeter();
 }
+ */
 
+public abstract class Shape implements ShapeInterface {};
 

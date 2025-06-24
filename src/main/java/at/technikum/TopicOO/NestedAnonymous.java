@@ -31,4 +31,8 @@ public class NestedAnonymous {
         sof(theorecticalSubDTO);
 
     }
+
+    public void nonStaticMethod() {
+        //System.out.println("Library.this :" + Library.this);
+    }
 }

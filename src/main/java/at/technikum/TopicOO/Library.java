@@ -54,5 +54,6 @@ public class Library {
         System.out.println("Library Name via page: " + myPage.getLibraryName());
 
         System.out.println("Library Name : " + myPage.getLibrary().libraryName);
+        //System.out.println("Library.this :" + Library.this);
     }
 }
